@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameSystem : MonoBehaviour
 {
     public int currentWeek = 1;
-    public MiningShaft miningShaft;
+    //public MiningShaft miningShaft;
     public Button nextWeekButton;
     public Button sellDiamondsButton;
     public ResourceManager resourceManager;
@@ -18,6 +18,8 @@ public class GameSystem : MonoBehaviour
 
     public int GoalWeek;
     public int goalDiamondQuantity;
+
+    public bool firstDigGuarantee = true;
 
 
     private void Update()
@@ -40,9 +42,14 @@ public class GameSystem : MonoBehaviour
         nextWeekButton.interactable = false;
         sellDiamondsButton.interactable = false;
         resourceManager.PayAllMinersSalary();
-        StartCoroutine(miningShaft.SendAllMinersToWork());
         currentWeek++;
         eventBar.ClearEventBar();
+
+        foreach (MiningShaft miningShaft in FindObjectsOfType<MiningShaft>())
+        {
+            StartCoroutine(miningShaft.SendAllMinersToWork());
+        }
+
         resourceManager.allreadySoldThisTurn = false;
     }
 

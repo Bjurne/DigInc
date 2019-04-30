@@ -145,17 +145,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca255ef1cb084e14e839b040a5fefa32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allMinerSlots: []
   minerPrefab: {fileID: 1189687370514891914, guid: e0721ab57f601164d983f7ec1ab6157f,
     type: 3}
-  minerSlotPrefab: {fileID: 0}
-  allMinersInMiningShaft: []
-  gameSystem: {fileID: 0}
+  minerSlotPrefab: {fileID: 4450746456001347900, guid: 797c7a899371c704fadbf40d09a2e3e6,
+    type: 3}
   expandMiningShaftButton: {fileID: 2095699861182901987}
   numberOfMinersInShaft: {fileID: 7596432421518427552}
   maxNumberOfMinersInShaft: {fileID: 5811843382366332486}
   expectedExpenditure: {fileID: 6030151348901274071}
-  resourceManager: {fileID: 0}
+  expansionLevel: 0
 --- !u!1 &641662312832450390
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +268,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 75, y: 0}
+  m_AnchoredPosition: {x: 180, y: 0}
   m_SizeDelta: {x: 32, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7048146282244479121
@@ -854,7 +852,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5703065726314445050}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -945,12 +943,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1872611285173534327}
-        m_MethodName: AddMinerSlots
-        m_Mode: 3
+        m_MethodName: BuyMineExpansion
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1086,7 +1084,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 180, y: 0}
+  m_AnchoredPosition: {x: 90, y: 0}
   m_SizeDelta: {x: 32, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5960421485343218950
@@ -1170,11 +1168,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MinerSlot (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4450746456001347900, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6983620961218309623, guid: 797c7a899371c704fadbf40d09a2e3e6,
         type: 3}
@@ -1281,45 +1274,8 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 3698343387136105302}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HireMiner
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 797c7a899371c704fadbf40d09a2e3e6, type: 3}
---- !u!114 &3698343387136105302 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1624801420, guid: 797c7a899371c704fadbf40d09a2e3e6,
-    type: 3}
-  m_PrefabInstance: {fileID: 3698343386595531738}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1d3031d8a227284c9e492dc868f7c1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &6033110411229967917 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6983620961218309623, guid: 797c7a899371c704fadbf40d09a2e3e6,
@@ -1337,11 +1293,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MinerSlot (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4450746456001347900, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6983620961218309623, guid: 797c7a899371c704fadbf40d09a2e3e6,
         type: 3}
@@ -1448,31 +1399,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 3935542178631362477}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HireMiner
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 797c7a899371c704fadbf40d09a2e3e6, type: 3}
 --- !u!224 &6230471156396755670 stripped
@@ -1481,18 +1407,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3935542180230932257}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3935542178631362477 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1624801420, guid: 797c7a899371c704fadbf40d09a2e3e6,
-    type: 3}
-  m_PrefabInstance: {fileID: 3935542180230932257}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1d3031d8a227284c9e492dc868f7c1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5391125706938758326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1610,83 +1524,8 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 5391125706398184506}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HireMiner
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1141096670487641253, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_Delegates.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1141096670487641253, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: delegates.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1141096670487641253, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_Delegates.Array.data[0].callback.m_TypeName
-      value: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI, Version=1.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      objectReference: {fileID: 0}
-    - target: {fileID: 1141096670487641253, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: delegates.Array.data[0].callback.m_TypeName
-      value: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI, Version=1.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      objectReference: {fileID: 0}
-    - target: {fileID: 1141096670487641253, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: delegates.Array.data[1].callback.m_TypeName
-      value: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI, Version=1.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      objectReference: {fileID: 0}
-    - target: {fileID: 1141096670487641253, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: hej
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1141096670487641253, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: thisTagType
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 797c7a899371c704fadbf40d09a2e3e6, type: 3}
---- !u!114 &5391125706398184506 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1624801420, guid: 797c7a899371c704fadbf40d09a2e3e6,
-    type: 3}
-  m_PrefabInstance: {fileID: 5391125706938758326}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1d3031d8a227284c9e492dc868f7c1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &3043287687905417537 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6983620961218309623, guid: 797c7a899371c704fadbf40d09a2e3e6,
@@ -1704,11 +1543,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MinerSlot (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4450746456001347900, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6983620961218309623, guid: 797c7a899371c704fadbf40d09a2e3e6,
         type: 3}
@@ -1815,31 +1649,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 5569534605902160733}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HireMiner
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 797c7a899371c704fadbf40d09a2e3e6, type: 3}
 --- !u!224 &3287689799564004902 stripped
@@ -1848,18 +1657,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5569534606452171729}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5569534605902160733 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1624801420, guid: 797c7a899371c704fadbf40d09a2e3e6,
-    type: 3}
-  m_PrefabInstance: {fileID: 5569534606452171729}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1d3031d8a227284c9e492dc868f7c1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7303373853688125193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1871,11 +1668,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MinerSlot (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4450746456001347900, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6983620961218309623, guid: 797c7a899371c704fadbf40d09a2e3e6,
         type: 3}
@@ -1982,31 +1774,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 7303373854211856261}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HireMiner
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 797c7a899371c704fadbf40d09a2e3e6, type: 3}
 --- !u!224 &409833683694353150 stripped
@@ -2015,18 +1782,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 7303373853688125193}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7303373854211856261 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1624801420, guid: 797c7a899371c704fadbf40d09a2e3e6,
-    type: 3}
-  m_PrefabInstance: {fileID: 7303373853688125193}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1d3031d8a227284c9e492dc868f7c1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7742081342785155293
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2038,11 +1793,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MinerSlot (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4450746456001347900, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6983620961218309623, guid: 797c7a899371c704fadbf40d09a2e3e6,
         type: 3}
@@ -2149,45 +1899,8 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 7742081342237306961}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HireMiner
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 797c7a899371c704fadbf40d09a2e3e6, type: 3}
---- !u!114 &7742081342237306961 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1624801420, guid: 797c7a899371c704fadbf40d09a2e3e6,
-    type: 3}
-  m_PrefabInstance: {fileID: 7742081342785155293}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1d3031d8a227284c9e492dc868f7c1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &836450950448209194 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6983620961218309623, guid: 797c7a899371c704fadbf40d09a2e3e6,
@@ -2205,11 +1918,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MinerSlot (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4450746456001347900, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6983620961218309623, guid: 797c7a899371c704fadbf40d09a2e3e6,
         type: 3}
@@ -2316,31 +2024,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 8277358523514394187}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HireMiner
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 797c7a899371c704fadbf40d09a2e3e6, type: 3}
 --- !u!224 &1312196740872125232 stripped
@@ -2349,18 +2032,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8277358522974869191}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8277358523514394187 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1624801420, guid: 797c7a899371c704fadbf40d09a2e3e6,
-    type: 3}
-  m_PrefabInstance: {fileID: 8277358522974869191}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1d3031d8a227284c9e492dc868f7c1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8671852748720935445
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2372,11 +2043,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MinerSlot (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4450746456001347900, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6983620961218309623, guid: 797c7a899371c704fadbf40d09a2e3e6,
         type: 3}
@@ -2483,31 +2149,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 8671852749271929497}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HireMiner
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 5052520047132884868, guid: 797c7a899371c704fadbf40d09a2e3e6,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 797c7a899371c704fadbf40d09a2e3e6, type: 3}
 --- !u!224 &1779575384822661090 stripped
@@ -2516,15 +2157,3 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8671852748720935445}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8671852749271929497 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1624801420, guid: 797c7a899371c704fadbf40d09a2e3e6,
-    type: 3}
-  m_PrefabInstance: {fileID: 8671852748720935445}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1d3031d8a227284c9e492dc868f7c1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

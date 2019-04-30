@@ -11,12 +11,17 @@ public class PriceTagWidget : MonoBehaviour
     private Text price;
     private Text tagTitle;
 
+    private Vector3 offset;
+
+    //private Camera uiCamera;
+
     void Start()
     {
-        price = transform.Find("Canvas/Panel/HorizontalLayout/Price").GetComponent<Text>();
+        price = transform.Find("Panel/HorizontalLayout/Price").GetComponent<Text>();
         price.text = currentPrice.ToString();
-        tagTitle = transform.Find("Canvas/Panel/PriceTagTitle").GetComponent<Text>();
+        tagTitle = transform.Find("Panel/PriceTagTitle").GetComponent<Text>();
         tagTitle.text = title;
+        offset.Set(Screen.width/12, 0f, 0f);
     }
 
     private void Update()
@@ -24,7 +29,7 @@ public class PriceTagWidget : MonoBehaviour
         //GetComponent<RectTransform>().anchoredPosition = Input.mousePosition;
         if (gameObject.activeInHierarchy)
         {
-            transform.position = Input.mousePosition;
+            transform.position = Input.mousePosition + offset;
         }
     }
 

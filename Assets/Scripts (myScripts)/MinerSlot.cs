@@ -17,15 +17,13 @@ public class MinerSlot : MonoBehaviour
     {
         if (!isOccupied)
         {
-            resourceManager.HireMiner();
+            resourceManager.HireMiner(this.GetComponentInParent<MiningShaft>());
         }
     }
 
     public void MinerAdded()
     {
         isOccupied = true;
-        //GetComponentInChildren<Text>().gameObject.SetActive(false);
-        //"Hire Miner" text in MinerSlot is deactivated by default now, we have PriceTags for this
         GetComponentInChildren<PriceTagTrigger>().Deactivate();
     }
 }

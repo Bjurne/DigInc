@@ -19,12 +19,12 @@ public class DigResultPopUp : MonoBehaviour
 
     public void SetDigResult(int amount)
     {
-        digResultAmount.text = amount.ToString();
+        digResultAmount.text = "+" + amount.ToString();
     }
 
     private IEnumerator DestroyAfterDelay()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         Destroy(this.gameObject);
         yield return null;
     }

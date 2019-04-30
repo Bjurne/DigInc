@@ -10,6 +10,7 @@ public class Miner : MonoBehaviour
     private ResourceManager resourceManager;
     public GameObject digResultPopUpPrefab;
     private EventBar eventBar;
+    private GameSystem gameSystem;
 
     public int toolLevel;
     public int rankLevel;
@@ -48,6 +49,7 @@ public class Miner : MonoBehaviour
         StudyIndicator.gameObject.SetActive(false);
         StrikeIndicator.gameObject.SetActive(false);
         miningShaft = GetComponentInParent<MiningShaft>();
+        gameSystem = FindObjectOfType<GameSystem>();
     }
 
     public void Dig()
@@ -62,10 +64,15 @@ public class Miner : MonoBehaviour
             else thisDiggingResult = ToolLevel0Dig();
 
             if (thisDiggingResult > thisWeeksResult) thisWeeksResult = thisDiggingResult;
+            
+            if (gameSystem.firstDigGuarantee)
+            {
+                thisWeeksResult = 2;
+                gameSystem.firstDigGuarantee = false;
+            }
         }
 
         isCurrentlyDigging = false;
-        //Debug.Log("Mined " + thisWeeksResult);
         resourceManager.AddDiamonds(thisWeeksResult);
         if (thisWeeksResult == 0) DigEvent();
         CreateDigResultPopUp(thisWeeksResult);
@@ -200,8 +207,8 @@ public class Miner : MonoBehaviour
         minerSprite.sprite = toolImage.sprite;
         while (isCurrentlyDigging)
         {
-            iTween.PunchRotation(minerSprite.gameObject, new Vector3(0f, 0f, 150f), 1f);
-            yield return new WaitForSeconds(1f);
+            iTween.PunchRotation(minerSprite.gameObject, new Vector3(0f, 0f, 150f), 0.5f);
+            yield return new WaitForSeconds(0.5f);
         }
         minerSprite.sprite = originalSprite;
         yield return null;
@@ -257,7 +264,8 @@ public class Miner : MonoBehaviour
     public void FireMiner()
     {
         Destroy(GetComponentInParent<MinerSlot>().gameObject);
-        Destroy(this.gameObject);
         miningShaft.ExpandMiningShaft(1);
+        Destroy(this.gameObject);
+        miningShaft.SetNumberOfMinersInMiningShaft();
     }
 }

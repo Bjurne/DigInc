@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7858816774970977712}
   - component: {fileID: 1983921808241950049}
   - component: {fileID: 2678994271113083463}
+  - component: {fileID: 4053771530157314745}
   m_Layer: 5
   m_Name: DigResultPopUp
   m_TagString: Untagged
@@ -86,6 +87,27 @@ MonoBehaviour:
   digResultImage: {fileID: 3069615583477667759}
   digResultAmount: {fileID: 6002243461968830001}
   risingSpeed: 7500
+--- !u!223 &4053771530157314745
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173212562446240676}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 250
+  m_TargetDisplay: 0
 --- !u!1 &3159410128994021830
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,7 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.09803922, g: 1, b: 0.09803922, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

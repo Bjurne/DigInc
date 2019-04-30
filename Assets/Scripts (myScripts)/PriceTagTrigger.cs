@@ -23,8 +23,9 @@ public class PriceTagTrigger : EventTrigger
     private void Awake()
     {
         priceTagPrefab = Resources.Load<PriceTagWidget>("Prefabs/PriceTag");
-        thisTag = Instantiate(priceTagPrefab, transform.position, Quaternion.identity);
-        thisTag.transform.SetParent(this.transform);
+        thisTag = Instantiate(priceTagPrefab, priceTagPrefab.transform.position, Quaternion.identity);
+        thisTag.transform.SetParent(gameObject.transform, false);
+        //thisTag.transform.SetParent(gameObject.GetComponent<RectTransform>(), false);
         thisTag.gameObject.SetActive(false);
         resourceManager = FindObjectOfType<ResourceManager>();
         SetTagType();

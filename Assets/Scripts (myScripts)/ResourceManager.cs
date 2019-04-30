@@ -24,6 +24,9 @@ public class ResourceManager : MonoBehaviour
     public int toolLevel2Cost = 18;
     public int rankLevel1Cost = 6;
     public int rankLevel2Cost = 18;
+    public int mineExpansion1Cost = 6;
+    public int mineExpansion2Cost = 12;
+    public int mineExpansion3Cost = 18;
 
     int sellingPrice;
     int allMinersTotalSalary = 0;
@@ -63,6 +66,7 @@ public class ResourceManager : MonoBehaviour
     {
         currentGold += Mathf.Abs(amount);
         UpdateResourcesDisplayed();
+        iTween.PunchScale (GoldQuantity.gameObject, Vector3.one * 3f, 1f);
     }
 
     public void DrawGold(int amount)
@@ -83,36 +87,49 @@ public class ResourceManager : MonoBehaviour
         UpdateResourcesDisplayed();
     }
 
-    public void HireMiner()
+    public void HireMiner(MiningShaft thisMiningShaft)
     {
         if (CheckAffordability(hireMinerCost))
         {
-            miningShaft.AddWorker();
-            miningShaft.UpdateExpectedExpenditure(CalculateAllMinersSalary());
+            thisMiningShaft.AddWorker();
+            thisMiningShaft.UpdateExpectedExpenditure(CalculateAllMinersSalary());
         }
     }
 
-    public void BuyMineExpansion()
+    public void BuyMineExpansion(MiningShaft thisMiningshaft)
     {
-        // check how many times the mineshaft has been upgraded, and set price accordingly.
-        if (CheckAffordability(shaftExpansionCost))
+        Button thisButton = thisMiningshaft.expandMiningShaftButton;
+
+        if (thisMiningshaft.expansionLevel == 0)
         {
-            miningShaft.ExpandMiningShaft(2);
-            shaftExpansionCost *= 2;
+            if (CheckAffordability(mineExpansion1Cost))
+            {
+                thisMiningshaft.ExpandMiningShaft(2);
+                thisMiningshaft.expansionLevel++;
+                thisButton.GetComponentInChildren<PriceTagWidget>(true).SetNewPrice(mineExpansion2Cost);
+            }
         }
+        else if (thisMiningshaft.expansionLevel == 1)
+        {
+            if (CheckAffordability(mineExpansion2Cost))
+            {
+                thisMiningshaft.ExpandMiningShaft(2);
+                thisMiningshaft.expansionLevel++;
+                thisButton.GetComponentInChildren<PriceTagWidget>(true).SetNewPrice(mineExpansion3Cost);
+            }
+        }
+        else if (thisMiningshaft.expansionLevel == 2)
+        {
+            if (CheckAffordability(mineExpansion3Cost))
+            {
+                thisMiningshaft.ExpandMiningShaft(2);
+                thisMiningshaft.expansionLevel++;
+                thisButton.GetComponentInChildren<PriceTagWidget>(true).SetNewPrice(0);
+            }
+        }
+
     }
 
-    public void UpdateExpansionCostPriceTag(GameObject button) // <---- livsfarlig quick fix -lösning på tidigare kommentar hehehe
-    {
-        try
-        {
-            button.GetComponentInChildren<PriceTagWidget>(true).SetNewPrice(shaftExpansionCost);
-        }
-        catch (System.Exception e)
-        {
-            throw e;
-        }
-    }
     public void ActivateSellingPrompt()
     {
         sellingPrompt.SetActive(true);

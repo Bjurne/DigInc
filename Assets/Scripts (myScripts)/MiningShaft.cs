@@ -10,21 +10,28 @@ public class MiningShaft : MonoBehaviour
     public GameObject minerPrefab;
     public GameObject minerSlotPrefab;
     private Miner[] allMinersInMiningShaft;
-    public GameSystem gameSystem;
+    private GameSystem gameSystem;
     public Button expandMiningShaftButton;
 
     public Text numberOfMinersInShaft;
     public Text maxNumberOfMinersInShaft;
     public Text expectedExpenditure;
 
-    public ResourceManager resourceManager;
+    private ResourceManager resourceManager;
+
+    public int expansionLevel;
 
     public void Awake()
     {
         allMinerSlots = GetComponentsInChildren<MinerSlot>();
+    }
 
+    private void Start()
+    {
+        gameSystem = FindObjectOfType<GameSystem>();
+        resourceManager = FindObjectOfType<ResourceManager>();
+        
         AddWorker();
-        //FillAllMinerSlots();
     }
 
     private void FillAllMinerSlots()
@@ -49,7 +56,8 @@ public class MiningShaft : MonoBehaviour
             else
             {
                 GameObject newMiner = Instantiate(minerPrefab, minerSlot.transform.position, Quaternion.identity);
-                newMiner.transform.SetParent(minerSlot.transform);
+                newMiner.transform.SetParent(minerSlot.transform, false);
+                newMiner.GetComponent<RectTransform>().localPosition = Vector3.zero;
                 minerSlot.MinerAdded();
                 break;
             }
@@ -57,10 +65,18 @@ public class MiningShaft : MonoBehaviour
         SetNumberOfMinersInMiningShaft();
     }
 
-    private void SetNumberOfMinersInMiningShaft()
+    public void SetNumberOfMinersInMiningShaft()
     {
         allMinersInMiningShaft = GetComponentsInChildren<Miner>();
         numberOfMinersInShaft.text = allMinersInMiningShaft.Length.ToString();
+
+        allMinerSlots = GetComponentsInChildren<MinerSlot>();
+        maxNumberOfMinersInShaft.text = allMinerSlots.Length.ToString();
+    }
+
+    public void BuyMineExpansion()
+    {
+        resourceManager.BuyMineExpansion(this.GetComponent<MiningShaft>());
     }
 
     public void ExpandMiningShaft(int numberOfMinerSlots)
@@ -68,9 +84,7 @@ public class MiningShaft : MonoBehaviour
         for (int i = 0; i < numberOfMinerSlots; i++)
         {
             GameObject newMinerSlot = Instantiate(minerSlotPrefab, this.transform.position, Quaternion.identity);
-            //newMinerSlot.transform.localScale = Vector3.one;
-            //newMinerSlot.transform.lossyScale.Set(1f, 1f, 1f);
-            newMinerSlot.transform.SetParent(this.transform);
+            newMinerSlot.transform.SetParent(this.transform, false);
         }
 
         allMinerSlots = GetComponentsInChildren<MinerSlot>();
@@ -92,6 +106,8 @@ public class MiningShaft : MonoBehaviour
             button.interactable = false;
         }
 
+        yield return new WaitForSeconds(0.1f);
+
         foreach (Miner miner in allMinersInMiningShaft)
         {
             if (miner.minerStatus == Miner.Status.Active)
@@ -101,15 +117,17 @@ public class MiningShaft : MonoBehaviour
             }
         }
 
+        yield return new WaitForSeconds(0.25f);
+
         foreach (Miner miner in allMinersInMiningShaft)
         {
             if (miner.minerStatus == Miner.Status.Active)
             {
                 miner.Dig();
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(1f);
             }
         }
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(0.5f);
 
         foreach (Miner miner in allMinersInMiningShaft)
         {
