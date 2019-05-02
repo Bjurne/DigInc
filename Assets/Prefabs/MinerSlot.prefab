@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1624801420}
   - component: {fileID: 5052520047132884868}
   - component: {fileID: 1141096670487641253}
+  - component: {fileID: 3895471967845365261}
   m_Layer: 5
   m_Name: MinerSlot
   m_TagString: Untagged
@@ -160,6 +161,21 @@ MonoBehaviour:
   m_Delegates: []
   delegates: []
   thisTagType: 0
+--- !u!114 &3895471967845365261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4450746456001347900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2126c04e08fda6e4b8c319ab2d39015d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
+  delegates: []
+  toolTipString: Miners will dig for Diamonds each week.
 --- !u!1 &7314716090336856134
 GameObject:
   m_ObjectHideFlags: 0

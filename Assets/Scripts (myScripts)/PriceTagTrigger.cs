@@ -11,9 +11,6 @@ public class PriceTagTrigger : EventTrigger
     private PriceTagWidget priceTagPrefab;
     private PriceTagWidget thisTag;
     private ResourceManager resourceManager;
-
-    private Text price;
-    private Text tagTitle;
     private bool deactivated;
 
     private enum TagType {MinerSlot, Tool, Rank, ExpandShaft};
@@ -25,7 +22,6 @@ public class PriceTagTrigger : EventTrigger
         priceTagPrefab = Resources.Load<PriceTagWidget>("Prefabs/PriceTag");
         thisTag = Instantiate(priceTagPrefab, priceTagPrefab.transform.position, Quaternion.identity);
         thisTag.transform.SetParent(gameObject.transform, false);
-        //thisTag.transform.SetParent(gameObject.GetComponent<RectTransform>(), false);
         thisTag.gameObject.SetActive(false);
         resourceManager = FindObjectOfType<ResourceManager>();
         SetTagType();
@@ -83,7 +79,13 @@ public class PriceTagTrigger : EventTrigger
 
     public override void OnPointerEnter(PointerEventData eventData)
     {
-        if (!deactivated) thisTag.gameObject.SetActive(true);
+        if (!deactivated)
+        {
+            thisTag.gameObject.SetActive(true);
+            thisTag.transform.localScale = Vector3.one;
+            iTween.ScaleFrom(thisTag.gameObject, Vector3.zero, 1f);
+            iTween.PunchPosition(thisTag.gameObject, UnityEngine.Random.insideUnitCircle * 50f, 1f);
+        }
     }
 
     public override void OnPointerExit(PointerEventData eventData)

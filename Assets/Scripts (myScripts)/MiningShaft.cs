@@ -15,6 +15,7 @@ public class MiningShaft : MonoBehaviour
 
     public Text numberOfMinersInShaft;
     public Text maxNumberOfMinersInShaft;
+    private RectTransform shaftFrameImage;
     public Text expectedExpenditure;
 
     private ResourceManager resourceManager;
@@ -30,7 +31,9 @@ public class MiningShaft : MonoBehaviour
     {
         gameSystem = FindObjectOfType<GameSystem>();
         resourceManager = FindObjectOfType<ResourceManager>();
-        
+        shaftFrameImage = transform.Find("ShaftFrame/FrameImage").GetComponent<RectTransform>();
+
+
         AddWorker();
     }
 
@@ -94,7 +97,12 @@ public class MiningShaft : MonoBehaviour
             expandMiningShaftButton.interactable = false;
         }
 
-        maxNumberOfMinersInShaft.text = allMinerSlots.Length.ToString();
+        int newNumberOfMinerSlots = allMinerSlots.Length;
+        maxNumberOfMinersInShaft.text = newNumberOfMinerSlots.ToString();
+
+        float newShaftFrameWidth = newNumberOfMinerSlots * 47f;
+        shaftFrameImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newShaftFrameWidth);
+        iTween.PunchScale(shaftFrameImage.gameObject, Vector3.one * 0.1f, 1f);
     }
 
     public IEnumerator SendAllMinersToWork()

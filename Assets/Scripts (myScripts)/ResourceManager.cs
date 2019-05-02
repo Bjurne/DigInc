@@ -66,7 +66,8 @@ public class ResourceManager : MonoBehaviour
     {
         currentGold += Mathf.Abs(amount);
         UpdateResourcesDisplayed();
-        iTween.PunchScale (GoldQuantity.gameObject, Vector3.one * 3f, 1f);
+        iTween.PunchScale (GoldQuantity.transform.parent.gameObject, Vector3.one * 2f, 1f);
+        AudioManager.INSTANCE.Play(AudioManager.INSTANCE.GoldSound);
     }
 
     public void DrawGold(int amount)
@@ -79,6 +80,11 @@ public class ResourceManager : MonoBehaviour
     {
         numberOfDiamondsOwned += Mathf.Abs(amount);
         UpdateResourcesDisplayed();
+        if (amount > 0)
+        {
+            iTween.PunchScale(diamondQuantity.transform.parent.gameObject, Vector3.one * 2f, 0.25f);
+            AudioManager.INSTANCE.Play(AudioManager.INSTANCE.digResultSound);
+        }
     }
 
     public void DrawDiamonds(int amount)

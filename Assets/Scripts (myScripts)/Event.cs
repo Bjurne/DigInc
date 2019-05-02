@@ -18,6 +18,7 @@ public class Event : MonoBehaviour
         eventTitle.text = "Miner hurt!";
         eventDescription.text = "A miner was hurt while working!";
         GetComponent<Image>().sprite = HurtSprite;
+        AudioManager.INSTANCE.Play(AudioManager.INSTANCE.crashSound);
     }
 
     public void FoundGold()

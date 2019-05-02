@@ -12,8 +12,7 @@ public class PriceTagWidget : MonoBehaviour
     private Text tagTitle;
 
     private Vector3 offset;
-
-    //private Camera uiCamera;
+    
 
     void Start()
     {
@@ -26,7 +25,6 @@ public class PriceTagWidget : MonoBehaviour
 
     private void Update()
     {
-        //GetComponent<RectTransform>().anchoredPosition = Input.mousePosition;
         if (gameObject.activeInHierarchy)
         {
             transform.position = Input.mousePosition + offset;

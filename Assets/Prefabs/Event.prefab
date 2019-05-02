@@ -380,7 +380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventTitle: {fileID: 5445054897756640872}
   eventDescription: {fileID: 3486719588714668061}
-  GoldSprite: {fileID: 21300000, guid: 61e2ca16d59b8b6438f323b36e3ba0e0, type: 3}
+  GoldSprite: {fileID: 21300000, guid: 863b05d9f1933934d9eab249e436102d, type: 3}
   HurtSprite: {fileID: 21300000, guid: 16497204e6c770d4c8a49c143d0c4568, type: 3}
 --- !u!114 &516486681556491033
 MonoBehaviour:
@@ -526,7 +526,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1049911800382929389
 RectTransform:
   m_ObjectHideFlags: 0
