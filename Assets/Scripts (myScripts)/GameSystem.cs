@@ -16,6 +16,8 @@ public class GameSystem : MonoBehaviour
     public GameObject winScreen;
     public GameObject looseScreen;
     public EventBar eventBar;
+    public GameObject sell4DiamondsButton;
+    public GameObject sell5DiamondsButton;
 
     public enum DifficultySetting {Easy, Normal, Hard};
     public DifficultySetting currentDifficultyLevel;
@@ -46,18 +48,18 @@ public class GameSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            debugManager.SetActive(!debugManager.activeInHierarchy);
-        }
+        //if (Input.GetKeyDown(KeyCode.D))
+        //{
+        //    debugManager.SetActive(!debugManager.activeInHierarchy);
+        //}
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             looseScreen.SetActive(!looseScreen.activeInHierarchy);
         }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            RestartGame();
-        }
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    RestartGame();
+        //}
     }
 
     public void AdvanceWeek()
@@ -119,13 +121,13 @@ public class GameSystem : MonoBehaviour
         else if(currentDifficultyLevel == DifficultySetting.Normal)
         {
             goalWeek = Mathf.RoundToInt(goalWeek * 1.6f);
-            goalDiamondQuantity *= 3;
+            goalDiamondQuantity = Mathf.RoundToInt(goalDiamondQuantity * 2.5f);
             resourceManager.UpdateResourcesDisplayed();
         }
         else if (currentDifficultyLevel == DifficultySetting.Hard)
         {
-            goalWeek = Mathf.RoundToInt(goalWeek * 1.5f);
-            goalDiamondQuantity *= 4;
+            goalWeek = Mathf.RoundToInt(goalWeek * 1.6f);
+            goalDiamondQuantity *= 3;
             resourceManager.UpdateResourcesDisplayed();
         }
         currentDeliveryNumber++;
@@ -180,12 +182,15 @@ public class GameSystem : MonoBehaviour
             goalWeek = 5;
             goalDiamondQuantity = 16;
             TotalNumberOfDeliveries = 5;
+            sell4DiamondsButton.SetActive(true);
         }
         else if (currentDifficultyLevel == DifficultySetting.Hard)
         {
             goalWeek = 6;
             goalDiamondQuantity = 32;
             TotalNumberOfDeliveries = 8;
+            sell4DiamondsButton.SetActive(true);
+            sell5DiamondsButton.SetActive(true);
         }
         
         StartCoroutine(FixStartingGoalDisplayed());

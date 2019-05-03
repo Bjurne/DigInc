@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-D:/Unity/Builds/DicIncVerticalSlice01/DigIncPOC02.exe
+D:/Unity/Builds/DicIncVerticalSlice01/Dig Inc.exe
 SceneListBegin?
 Assets/Scenes/PrototypeScene.unity
 SceneListEnd?
@@ -121,7 +121,7 @@ d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.Spa
 8a897dfb626c396ccd98390c9e243470 Assembly-CSharp.dll:.Event
 303ad70ce203ad874efe2965d0fbcff9 Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsEventTracker
 7fb9de8dcf73854b6b328eca1f7a6e6d Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsTracker
-b9b7cdaa0fe39f4ae4c158b4ed7263ea Assembly-CSharp.dll:.GameSystem
+b4ede7c32559d2a5373664a1f6d060d4 Assembly-CSharp.dll:.GameSystem
 7b00f9eb8839d962cd29f91ee0a7e80f Assembly-CSharp.dll:.TimeKillerButton
 94017dcc9f00fe671ea7dc427b4da011 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
 b3ab2106268377ffe25dd18ac23dca28 Unity.TextMeshPro.dll:TMPro.TMP_Asset
