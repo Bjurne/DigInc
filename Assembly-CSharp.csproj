@@ -60,7 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AudioManager.cs" />
+    <Compile Include="Assets\MainMenu.cs" />
+    <Compile Include="Assets\Scripts (myScripts)\AudioManager.cs" />
     <Compile Include="Assets\Scripts (myScripts)\DigResultPopUp.cs" />
     <Compile Include="Assets\Scripts (myScripts)\Event.cs" />
     <Compile Include="Assets\Scripts (myScripts)\EventBar.cs" />
@@ -71,9 +72,10 @@
     <Compile Include="Assets\Scripts (myScripts)\PriceTagTrigger.cs" />
     <Compile Include="Assets\Scripts (myScripts)\PriceTagWidget.cs" />
     <Compile Include="Assets\Scripts (myScripts)\ResourceManager.cs" />
+    <Compile Include="Assets\Scripts (myScripts)\SellDiamondsPrompt.cs" />
     <Compile Include="Assets\Scripts (myScripts)\ToolTipTrigger.cs" />
-    <Compile Include="Assets\SellDiamondsPrompt.cs" />
-    <Compile Include="Assets\ToolTipWidget.cs" />
+    <Compile Include="Assets\Scripts (myScripts)\ToolTipWidget.cs" />
+    <Compile Include="Assets\TimeKillerButton.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/GitHub/DigInc/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

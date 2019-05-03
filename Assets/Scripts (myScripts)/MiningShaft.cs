@@ -10,7 +10,7 @@ public class MiningShaft : MonoBehaviour
     public GameObject minerPrefab;
     public GameObject minerSlotPrefab;
     private Miner[] allMinersInMiningShaft;
-    private GameSystem gameSystem;
+    //private GameSystem gameSystem;
     public Button expandMiningShaftButton;
 
     public Text numberOfMinersInShaft;
@@ -29,7 +29,7 @@ public class MiningShaft : MonoBehaviour
 
     private void Start()
     {
-        gameSystem = FindObjectOfType<GameSystem>();
+        //gameSystem = FindObjectOfType<GameSystem>();
         resourceManager = FindObjectOfType<ResourceManager>();
         shaftFrameImage = transform.Find("ShaftFrame/FrameImage").GetComponent<RectTransform>();
 
@@ -100,7 +100,7 @@ public class MiningShaft : MonoBehaviour
         int newNumberOfMinerSlots = allMinerSlots.Length;
         maxNumberOfMinersInShaft.text = newNumberOfMinerSlots.ToString();
 
-        float newShaftFrameWidth = newNumberOfMinerSlots * 47f;
+        float newShaftFrameWidth = Mathf.Clamp( newNumberOfMinerSlots * 46f, 400f, 630f);
         shaftFrameImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, newShaftFrameWidth);
         iTween.PunchScale(shaftFrameImage.gameObject, Vector3.one * 0.1f, 1f);
     }
@@ -141,14 +141,21 @@ public class MiningShaft : MonoBehaviour
         {
             miner.UpdateStatus();
         }
-        gameSystem.nextWeekButton.interactable = true;
-        gameSystem.sellDiamondsButton.interactable = true;
-        gameSystem.CheckIfGoalWasReached();
+        GameSystem.instance.nextWeekButton.interactable = true;
+        GameSystem.instance.sellDiamondsButton.interactable = true;
+        GameSystem.instance.currentWeek++;
+        resourceManager.GetSomeGoldImage.SetActive(true);
+        GameSystem.instance.CheckIfGoalWasReached();
         UpdateExpectedExpenditure(resourceManager.CalculateAllMinersSalary());
+        resourceManager.UpdateResourcesDisplayed();
 
         foreach (Button button in GetComponentsInChildren<Button>(true))
         {
-            button.interactable = true;
+            if (button == expandMiningShaftButton)
+            {
+                if (expansionLevel < 3) button.interactable = true;
+            }
+            else button.interactable = true;
         }
         //TODO fix find buttons properly
         yield return null;

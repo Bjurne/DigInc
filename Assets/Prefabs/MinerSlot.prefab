@@ -93,6 +93,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceManager: {fileID: 0}
   isOccupied: 0
+  thisSlotSprite: {fileID: 0}
+  minerSlotSprites:
+  - {fileID: 21300000, guid: 5303cd100c3569c498441326a1947419, type: 3}
+  - {fileID: 21300000, guid: 0e7645a33ca81c7488e0b5e0b994a4bb, type: 3}
+  - {fileID: 21300000, guid: 7642841b0129a45429d113e945a85809, type: 3}
 --- !u!114 &5052520047132884868
 MonoBehaviour:
   m_ObjectHideFlags: 0

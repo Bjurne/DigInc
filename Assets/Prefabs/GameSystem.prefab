@@ -43,6 +43,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c29edfe49d1d16946bfff422b50782ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeek: 0
-  miningShaft: {fileID: 0}
+  currentWeek: 1
   nextWeekButton: {fileID: 0}
+  sellDiamondsButton: {fileID: 0}
+  resourceManager: {fileID: 0}
+  debugManager: {fileID: 0}
+  winScreen: {fileID: 0}
+  looseScreen: {fileID: 0}
+  eventBar: {fileID: 0}
+  GoalWeek: 10
+  goalDiamondQuantity: 65
+  firstDigGuarantee: 1

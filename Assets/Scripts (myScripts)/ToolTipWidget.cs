@@ -11,7 +11,7 @@ public class ToolTipWidget : MonoBehaviour
     public Text toolTipText;
 
     private Vector3 offset;
-
+    private Vector3 deltaOffset;
 
     void Start()
     {
@@ -28,9 +28,10 @@ public class ToolTipWidget : MonoBehaviour
     private IEnumerator FixedSetTextProperties()
     {
         yield return new WaitForFixedUpdate();
-        offset.Set(-toolTipText.preferredWidth / 2f, -Screen.height / 12f, 0f);
+        offset.Set(0f, -Screen.height / 32f, 0f);
 
-        Vector2 backgroundSize = new Vector2(toolTipText.preferredWidth + 8f, toolTipText.preferredHeight + 8f);
+        //Vector2 backgroundSize = new Vector2(toolTipText.preferredWidth + 8f, toolTipText.preferredHeight + 8f);
+        Vector2 backgroundSize = new Vector2(100 + 8f, toolTipText.preferredHeight + 8f);
         transform.Find("BackgroundPanel").GetComponent<RectTransform>().sizeDelta = backgroundSize;
         yield return null;
     }
@@ -40,6 +41,17 @@ public class ToolTipWidget : MonoBehaviour
         if (gameObject.activeInHierarchy)
         {
             transform.position = Input.mousePosition + offset;
+
+            float posClamp = 100f;
+
+            if (transform.position.x < posClamp) deltaOffset.Set(posClamp * 2, 0f, 0f);
+            if (transform.position.y < posClamp) deltaOffset.Set(0f, posClamp * 2, 0f);
+            if (transform.position.x > Screen.width - posClamp) deltaOffset.Set(-posClamp * 2, 0f, 0f);
+            if (transform.position.y > Screen.height - posClamp) deltaOffset.Set(0f, -posClamp * 2, 0f);
+            //else deltaOffset.Set(0f, 0f, 0f);
+
+            transform.position += deltaOffset;
+
         }
     }
 }

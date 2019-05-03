@@ -10,7 +10,7 @@ public class Miner : MonoBehaviour
     private ResourceManager resourceManager;
     public GameObject digResultPopUpPrefab;
     private EventBar eventBar;
-    private GameSystem gameSystem;
+    //private GameSystem gameSystem;
 
     public int toolLevel;
     public int rankLevel;
@@ -49,7 +49,7 @@ public class Miner : MonoBehaviour
         StudyIndicator.gameObject.SetActive(false);
         StrikeIndicator.gameObject.SetActive(false);
         miningShaft = GetComponentInParent<MiningShaft>();
-        gameSystem = FindObjectOfType<GameSystem>();
+        //gameSystem = FindObjectOfType<GameSystem>();
     }
 
     public void Dig()
@@ -65,10 +65,10 @@ public class Miner : MonoBehaviour
 
             if (thisDiggingResult > thisWeeksResult) thisWeeksResult = thisDiggingResult;
             
-            if (gameSystem.firstDigGuarantee)
+            if (GameSystem.instance.firstDigGuarantee)
             {
                 thisWeeksResult = 2;
-                gameSystem.firstDigGuarantee = false;
+                GameSystem.instance.firstDigGuarantee = false;
             }
         }
 
@@ -263,9 +263,10 @@ public class Miner : MonoBehaviour
 
     public void FireMiner()
     {
-        Destroy(GetComponentInParent<MinerSlot>().gameObject);
+        DestroyImmediate(GetComponentInParent<MinerSlot>().gameObject);
         miningShaft.ExpandMiningShaft(1);
-        Destroy(this.gameObject);
         miningShaft.SetNumberOfMinersInMiningShaft();
+        //DestroyImmediate(this.gameObject);
+        miningShaft.UpdateExpectedExpenditure(resourceManager.CalculateAllMinersSalary());
     }
 }

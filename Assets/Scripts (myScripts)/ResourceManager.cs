@@ -11,12 +11,16 @@ public class ResourceManager : MonoBehaviour
     public Text diamondQuantity;
     public Text GoldQuantity;
     public Text currentWeek;
+    public Text deliveryDiamondQuantity;
+    public Text deliveryWeeksLeft;
 
     public MiningShaft miningShaft;
     public GameObject sellingPrompt;
-    public GameSystem gameSystem;
+    //public GameSystem gameSystem;
     public Button sellButton;
     public GameObject strikeWarningPrompt;
+    public GameObject GetSomeGoldImage;
+    public GameObject DevelopThenGoImage;
 
     public int hireMinerCost = 3;
     public int shaftExpansionCost = 6;
@@ -44,10 +48,30 @@ public class ResourceManager : MonoBehaviour
     {
         GoldQuantity.text = currentGold.ToString();
         diamondQuantity.text = numberOfDiamondsOwned.ToString();
-        currentWeek.text = gameSystem.currentWeek.ToString();
+        currentWeek.text = GameSystem.instance.currentWeek.ToString();
         miningShaft.UpdateExpectedExpenditure(CalculateAllMinersSalary());
-    }
+        //deliveryDiamondQuantity.text = "Deliver " + gameSystem.goalDiamondQuantity.ToString() + " Diamonds";
+        deliveryDiamondQuantity.text = GameSystem.instance.goalDiamondQuantity.ToString();
 
+        int weeksLeft = GameSystem.instance.goalWeek - GameSystem.instance.currentWeek;
+        if (weeksLeft <= 1)
+        {
+            foreach (Text childText in deliveryWeeksLeft.gameObject.GetComponentsInChildren<Text>())
+            {
+                if (childText != deliveryWeeksLeft) childText.gameObject.SetActive(false);
+            }
+            deliveryWeeksLeft.text = "after this week!";
+        }
+        else
+        {
+            foreach (Text childText in deliveryWeeksLeft.gameObject.GetComponentsInChildren<Text>(true))
+            {
+                childText.gameObject.SetActive(true);
+            }
+            deliveryWeeksLeft.text = weeksLeft.ToString();
+        }
+    }
+    
     public bool CheckAffordability(int amount)
     {
         if (Mathf.Abs(amount) > currentGold)
@@ -131,6 +155,7 @@ public class ResourceManager : MonoBehaviour
                 thisMiningshaft.ExpandMiningShaft(2);
                 thisMiningshaft.expansionLevel++;
                 thisButton.GetComponentInChildren<PriceTagWidget>(true).SetNewPrice(0);
+                thisButton.interactable = false;
             }
         }
 
@@ -153,17 +178,21 @@ public class ResourceManager : MonoBehaviour
         if (numberOfDiamondsToSell == 1) sellingPrice = 10;
         if (numberOfDiamondsToSell == 2) sellingPrice = 18;
         if (numberOfDiamondsToSell == 3) sellingPrice = 24;
+        if (numberOfDiamondsToSell == 4) sellingPrice = 30;
+        if (numberOfDiamondsToSell == 5) sellingPrice = 35;
 
         if (numberOfDiamondsOwned >= numberOfDiamondsToSell)
         {
             AddGold(sellingPrice);
             DrawDiamonds(numberOfDiamondsToSell);
             sellButton.interactable = false;
+            GetSomeGoldImage.SetActive(false);
+            DevelopThenGoImage.SetActive(true);
             allreadySoldThisTurn = true;
             if (sellToAdvanceWeek)
             {
                 sellToAdvanceWeek = false;
-                gameSystem.AdvanceWeek();
+                GameSystem.instance.AdvanceWeek();
             }
         }
     }
@@ -212,13 +241,13 @@ public class ResourceManager : MonoBehaviour
 
     public void CheckSalaryAffordability()
     {
-        if (CalculateAllMinersSalary() <= currentGold) gameSystem.AdvanceWeek();
+        if (CalculateAllMinersSalary() <= currentGold) GameSystem.instance.AdvanceWeek();
         else if (!allreadySoldThisTurn)
         {
             sellToAdvanceWeek = true;
             ActivateSellingPrompt();
         }
-        else gameSystem.AdvanceWeek();
+        else GameSystem.instance.AdvanceWeek();
     }
 
     public void CheckStrikeWarningPrompt()
@@ -237,7 +266,7 @@ public class ResourceManager : MonoBehaviour
         if (sellToAdvanceWeek)
         {
             sellToAdvanceWeek = false;
-            gameSystem.AdvanceWeek();
+            GameSystem.instance.AdvanceWeek();
         }
     }
 }

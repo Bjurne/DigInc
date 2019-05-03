@@ -1,5 +1,6 @@
 ﻿using UnityEngine.Audio;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
@@ -30,5 +31,19 @@ public class AudioManager : MonoBehaviour
     {
         sfxSource.clip = clip;
         sfxSource.Play();
+    }
+
+    public void MuteUnmuteSounds(Image buttonImage)
+    {
+        if (sfxSource.volume > 0.5f)
+        {
+            sfxSource.volume = 0f;
+            buttonImage.sprite = Resources.Load<Sprite>("Sprites/SoundMutedSprite01");
+        }
+        else
+        {
+            sfxSource.volume = 1f;
+            buttonImage.sprite = Resources.Load<Sprite>("Sprites/SoundOnSprite01");
+        }
     }
 }

@@ -8,9 +8,17 @@ public class MinerSlot : MonoBehaviour
     public ResourceManager resourceManager;
     public bool isOccupied;
 
+    private Image thisSlotSprite;
+    public List<Sprite> minerSlotSprites;
+
     private void Start()
     {
+        thisSlotSprite = GetComponent<Image>();
         resourceManager = FindObjectOfType<ResourceManager>();
+
+        int randomSprite = UnityEngine.Random.Range(0, 3);
+
+        thisSlotSprite.sprite = minerSlotSprites[randomSprite];
     }
 
     public void HireMiner()
