@@ -14,6 +14,7 @@ public class GameSystem : MonoBehaviour
     public ResourceManager resourceManager;
     public GameObject debugManager;
     public GameObject winScreen;
+    public GameObject winScreenFinal;
     public GameObject looseScreen;
     public EventBar eventBar;
     public GameObject sell4DiamondsButton;
@@ -87,8 +88,6 @@ public class GameSystem : MonoBehaviour
             if (resourceManager.numberOfDiamondsOwned >= goalDiamondQuantity)
             {
                 Debug.Log("You've made it! New delivery request");
-                TurnOtherCanvasGroupsOff(winScreen.GetComponent<CanvasGroup>());
-                winScreen.SetActive(true);
                 DeliveryRequestFulfilled();
             }
             else
@@ -106,7 +105,13 @@ public class GameSystem : MonoBehaviour
         resourceManager.AddGold(goalDiamondQuantity / 2);
         if (currentDeliveryNumber >= TotalNumberOfDeliveries)
         {
-            RestartGame();
+            TurnOtherCanvasGroupsOff(winScreenFinal.GetComponent<CanvasGroup>());
+            winScreenFinal.SetActive(true);
+        }
+        else
+        {
+            TurnOtherCanvasGroupsOff(winScreen.GetComponent<CanvasGroup>());
+            winScreen.SetActive(true);
         }
     }
     
@@ -121,13 +126,13 @@ public class GameSystem : MonoBehaviour
         else if(currentDifficultyLevel == DifficultySetting.Normal)
         {
             goalWeek = Mathf.RoundToInt(goalWeek * 1.6f);
-            goalDiamondQuantity = Mathf.RoundToInt(goalDiamondQuantity * 2.5f);
+            goalDiamondQuantity = Mathf.RoundToInt((goalDiamondQuantity * 2.5f) - ((currentDeliveryNumber * currentDeliveryNumber) * 2));
             resourceManager.UpdateResourcesDisplayed();
         }
         else if (currentDifficultyLevel == DifficultySetting.Hard)
         {
-            goalWeek = Mathf.RoundToInt(goalWeek * 1.6f);
-            goalDiamondQuantity *= 3;
+            goalWeek = Mathf.RoundToInt(goalWeek * 1.8f);
+            goalDiamondQuantity = Mathf.RoundToInt(goalDiamondQuantity * 3 - ((currentDeliveryNumber * currentDeliveryNumber) * 12));
             resourceManager.UpdateResourcesDisplayed();
         }
         currentDeliveryNumber++;
@@ -188,7 +193,7 @@ public class GameSystem : MonoBehaviour
         {
             goalWeek = 6;
             goalDiamondQuantity = 32;
-            TotalNumberOfDeliveries = 8;
+            TotalNumberOfDeliveries = 5;
             sell4DiamondsButton.SetActive(true);
             sell5DiamondsButton.SetActive(true);
         }
